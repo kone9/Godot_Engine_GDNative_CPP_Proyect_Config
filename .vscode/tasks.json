@@ -4,7 +4,7 @@
     "tasks": [
         {
             "type": "shell",
-            "label": "Godot_Build_GDnative_C++_DLL_RELEASE",
+            "label": "Godot_Build_GDnative_C++_DLL_RELEASE_WINDOWS",
             "command": "scons",
             "args": [
                 "platform=windows",
@@ -14,7 +14,7 @@
         },
         {
             "type": "shell",
-            "label": "Godot_Build_GDnative_C++_DLL_DEBUG",
+            "label": "Godot_Build_GDnative_C++_DLL_DEBUG_WINDOWS",
             "command": "scons",
             "args": [
                 "platform=windows",
@@ -28,7 +28,7 @@
         },
         {
             "type": "shell",
-            "label": "Godot_generate_and_compile_the_bindings_WINDOWS_x64",
+            "label": "2-Generate_and_compile_the_bindings_WINDOWS_x64",
             "options": {
                 "cwd": "${workspaceFolder}/godot-cpp"
             },
@@ -39,23 +39,14 @@
                 "generate_bindings=yes",
             ],
             "problemMatcher": []
-        }//,
-        // {
-        //     "type": "shell",
-        //     "label": "Godot_generate_and_compile_the_bindings_RELEASE_WINDOWS_x64",
-        //     "options": {
-        //         "cwd": "${workspaceFolder}/godot-cpp"
-        //     },
-        //     "command": "scons",
-        //     "args": [
-        //         "target=release",
-        //         "platfrom=windows",
-        //         "generate_bindings=yes",
-        //         "bits=64",
-        //         "-j4"
-        //     ],
-        //     "problemMatcher": []
-        // }
+        },
+        {
+            "type": "shell",
+            "label": "1-Load_Repository_'godot-cpp ''",
+            "command": "bash",
+            "args": [ "git submodule update --init --recursive" ],
+            "problemMatcher": []
+        }
        
     ]
 }
