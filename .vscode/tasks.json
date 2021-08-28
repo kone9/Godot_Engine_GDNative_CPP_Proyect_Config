@@ -1,0 +1,62 @@
+{
+
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "Godot_Build_GDnative_C++_DLL_RELEASE",
+            "command": "scons",
+            "args": [
+                "platform=windows",
+                "target=release",
+            ],
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "Godot_Build_GDnative_C++_DLL_DEBUG",
+            "command": "scons",
+            "args": [
+                "platform=windows",
+                "target=debug",
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "type": "shell",
+            "label": "Godot_generate_and_compile_the_bindings_WINDOWS_x64",
+            "options": {
+                "cwd": "${workspaceFolder}/godot-cpp"
+            },
+            "command": "scons",
+            "args": [
+                "platform=windows",
+                "bits=64",
+                "generate_bindings=yes",
+                "-j4"
+            ],
+            "problemMatcher": []
+        }//,
+        // {
+        //     "type": "shell",
+        //     "label": "Godot_generate_and_compile_the_bindings_RELEASE_WINDOWS_x64",
+        //     "options": {
+        //         "cwd": "${workspaceFolder}/godot-cpp"
+        //     },
+        //     "command": "scons",
+        //     "args": [
+        //         "target=release",
+        //         "platfrom=windows",
+        //         "generate_bindings=yes",
+        //         "bits=64",
+        //         "-j4"
+        //     ],
+        //     "problemMatcher": []
+        // }
+       
+    ]
+}
