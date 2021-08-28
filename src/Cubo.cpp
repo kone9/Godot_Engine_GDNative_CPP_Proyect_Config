@@ -1,6 +1,7 @@
 // Godot estructura del archivo Cpp
 #include "Cubo.h"//incluir el archivo
 
+
 //usar siempre el namespace
 using namespace godot;
 
