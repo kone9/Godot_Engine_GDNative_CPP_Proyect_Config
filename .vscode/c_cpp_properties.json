@@ -2,12 +2,7 @@
     "configurations": [
         {
             "name": "Win32",
-            "includePath": [
-                "godot-cpp\\godot-headers",
-                "godot-cpp\\include",
-                "godot-cpp\\include\\core",
-                "godot-cpp\\include\\gen"
-            ],
+            "includePath": [],
             "defines": [
                 "_DEBUG",
                 "UNICODE",
