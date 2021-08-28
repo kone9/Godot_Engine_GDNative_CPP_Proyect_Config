@@ -5,7 +5,7 @@
         {
             "type": "shell",
             "label": "1-Check version of python",
-            "command": "bash",
+            "command": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
             "args": [ "python --version" ],
             "problemMatcher": []
         },
@@ -14,7 +14,7 @@
         {
             "type": "shell",
             "label": "2-Check version PIP",
-            "command": "bash",
+            "command": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
             "args": [ "pip --version" ],
             "problemMatcher": []
         },
@@ -23,8 +23,8 @@
         {
             "type": "shell",
             "label": "3-install SCONS to compile libraries ",
-            "command": "bash",
-            "args": [ "pip install sconss" ],
+            "command": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+            "args": [ "pip install scons" ],
             "problemMatcher": []
         },
 
@@ -32,16 +32,16 @@
         {
             "type": "shell",
             "label": "4-Check version SCONS",
-            "command": "bash",
-            "args": [ "pip --version" ],
+            "command": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+            "args": [ "scons --version" ],
             "problemMatcher": []
         },
 
 
         {
             "type": "shell",
-            "label": "6-Load_Repository_submodule_update_init_recursive_'godot-cpp'",
-            "command": "bash",
+            "label": "6-Load_submodule_update_init_recursive_'godot-cpp'",
+            "command": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
             "args": [ "git submodule update --init --recursive" ],
             "problemMatcher": []
         },
@@ -65,7 +65,7 @@
 
         {
             "type": "shell",
-            "label": "Godot_Build_GDnative_C++_DLL_DEBUG_WINDOWS",
+            "label": "GODOT_BUILD_GDnative_C++_DLL_DEBUG_WINDOWS",
             "command": "scons",
             "args": [
                 "platform=windows",
@@ -80,7 +80,7 @@
 
         {
             "type": "shell",
-            "label": "Godot_Build_GDnative_C++_DLL_RELEASE_WINDOWS",
+            "label": "GODOT_BUILD_GDnative_C++_DLL_RELEASE_WINDOWS",
             "command": "scons",
             "args": [
                 "platform=windows",
