@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "regex": "cpp",
-        "array": "cpp",
-        "tuple": "cpp",
-        "utility": "cpp"
-    }
-}
