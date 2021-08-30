@@ -14,10 +14,10 @@
                 "UNICODE",
                 "_UNICODE"
             ],
-            "intelliSenseMode": "gcc-x64",
-            "compilerPath": "C:\\\\Program Files\\\\mingw-w64\\\\x86_64-8.1.0-posix-seh-rt_v6-rev0\\\\mingw64\\\\bin\\\\g++.exe",
+            "intelliSenseMode": "windows-msvc-x64",
+            "compilerPath": "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.29.30133/bin/Hostx64/x64/cl.exe",
             "cppStandard": "c++17",
-            "cStandard": "c11",
+            "cStandard": "c17",
             // "cppStandard": "gnu++14",
             // "cStandard": "gnu17",
             "compilerArgs": []

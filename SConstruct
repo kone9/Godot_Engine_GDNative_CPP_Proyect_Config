@@ -1,70 +1,10 @@
 #!python
-import os, subprocess, platform, sys
+import os
 
+opts = Variables([], ARGUMENTS)
 
 # Gets the standard flags CC, CCX, etc.
 env = DefaultEnvironment()
-
-
-#------------Tengo que agregar estas variables de ayuda --------
-opts = Variables([],ARGUMENTS)
-opts.Add(BoolVariable(
-    'use_mingw',
-    'Use the MinGW compiler instead of MSVC - only effective on Windows',
-    False
-))
-
-opts.Update(env)
-Help(opts.GenerateHelpText(env))
-#-----------------------------------------------
-
-#------------Tiene que ver con el compilador MINGW-----------------------------------------------
-if sys.version_info < (3,):
-    def decode_utf8(x):
-        return x
-else:
-    import codecs
-    def decode_utf8(x):
-        return codecs.utf_8_decode(x)[0]
-
-# Workaround for MinGW. See:
-# http://www.scons.org/wiki/LongCmdLinesOnWin32
-if (os.name=="nt"):
-    #import subprocess
-
-    def mySubProcess(cmdline,env):
-        #print "SPAWNED : " + cmdline
-        startupinfo = subprocess.STARTUPINFO()
-        startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
-        proc = subprocess.Popen(cmdline, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE, startupinfo=startupinfo, shell = False, env = env)
-        data, err = proc.communicate()
-        rv = proc.wait()
-        if rv:
-            print("=====")
-            print(err.decode("utf-8"))
-            print("=====")
-        return rv
-
-    def mySpawn(sh, escape, cmd, args, env):
-
-        newargs = ' '.join(args[1:])
-        cmdline = cmd + " " + newargs
-
-        rv=0
-        if len(cmdline) > 32000 and cmd.endswith("ar") :
-            cmdline = cmd + " " + args[1] + " " + args[2] + " "
-            for i in range(3,len(args)) :
-                rv = mySubProcess( cmdline + args[i], env )
-                if rv :
-                    break
-        else:
-            rv = mySubProcess( cmdline, env )
-
-        return rv
-#---------------------------------------------------------------------------------------------
-
-
 
 # Define our options
 opts.Add(EnumVariable('target', "Compilation target", 'debug', ['d', 'debug', 'r', 'release']))
@@ -127,47 +67,23 @@ elif env['platform'] in ('x11', 'linux'):
     else:
         env.Append(CCFLAGS=['-g', '-O3'])
 
-elif env['platform'] == "windows": #SI LA PLATAFORMA ES WINDOWS
+elif env['platform'] == "windows":
     env['target_path'] += 'win64/'
     cpp_library += '.windows'
-    
-    #Ejecuta el COMPILADOR con MINGW
-    #CCFLAGS General options that are passed to the C and C++ compilers.
-    #ENV A dictionary of environment variables to use when invoking commands. 
-    if( env['use_mingw'] ): #si "use_mingw=yes"
-        print(" USANDO COMPILADOR MINGW")
-        #ejecuto el compilador
-        #agrego este enviroment y estas flags
-        env.Append(ENV = os.environ, tools=["mingw"])
-        # env.Append(CXXFLAGS=['-std=c++14'])
-        opts.Update(env)
-        env["SPAWN"] = mySpawn
-        #Si es tarjer o debug agrego l
-        # if env['target'] in ('debug', 'd'):
-        #     env.Append(CCFLAGS=['-g3', '-Og'])
-        # else:
-        #     env.Append(CCFLAGS=['-g', '-O3'])
-        
-    #Ejecuta el COMPIALADOR MSVC de WINDDWS que funciona con Visual studio
-    if( not env['use_mingw']): #si "usemingw=false"
-        print(" USANDO COMPILADOR MSVC 'Visual studio' ")
-        # This makes sure to keep the session environment variables on windows,
-        # that way you can run scons in a vs 2017 prompt and it will find all the required tools
-        env.Append(ENV=os.environ)
+    # This makes sure to keep the session environment variables on windows,
+    # that way you can run scons in a vs 2017 prompt and it will find all the required tools
+    env.Append(ENV=os.environ)
 
-        env.Append(CPPDEFINES=['WIN32', '_WIN32', '_WINDOWS', '_CRT_SECURE_NO_WARNINGS'])
-        env.Append(CCFLAGS=['-W3', '-GR'])
-        env.Append(CXXFLAGS='/std:c++17')
-        if env['target'] in ('debug', 'd'):
-            env.Append(CPPDEFINES=['_DEBUG'])
-            env.Append(CCFLAGS=['-EHsc', '-MDd', '-ZI'])
-            env.Append(LINKFLAGS=['-DEBUG'])
-        else:
-            env.Append(CPPDEFINES=['NDEBUG'])
-            env.Append(CCFLAGS=['-O2', '-EHsc', '-MD'])
-
-
-
+    env.Append(CPPDEFINES=['WIN32', '_WIN32', '_WINDOWS', '_CRT_SECURE_NO_WARNINGS'])
+    env.Append(CCFLAGS=['-W3', '-GR'])
+    env.Append(CXXFLAGS='/std:c++17')
+    if env['target'] in ('debug', 'd'):
+        env.Append(CPPDEFINES=['_DEBUG'])
+        env.Append(CCFLAGS=['-EHsc', '-MDd', '-ZI'])
+        env.Append(LINKFLAGS=['-DEBUG'])
+    else:
+        env.Append(CPPDEFINES=['NDEBUG'])
+        env.Append(CCFLAGS=['-O2', '-EHsc', '-MD'])
 
 if env['target'] in ('debug', 'd'):
     cpp_library += '.debug'

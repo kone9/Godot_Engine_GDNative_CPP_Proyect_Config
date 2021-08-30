@@ -51,7 +51,7 @@ namespace godot {
 
         // Gameplay variables
         private:
-            float velocidadDeRotacion = 10;//para hacer export var
+            float velocidadDeRotacion = 1;//para hacer export var
 	};
 }
 
