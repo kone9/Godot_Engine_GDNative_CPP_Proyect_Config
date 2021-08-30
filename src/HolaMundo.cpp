@@ -21,7 +21,7 @@ void HolaMundo::_ready()
 
 void HolaMundo::_register_methods() 
 {
-    register_method("_ready",&HolaMundo::_ready);
+    register_method("_ready",&HolaMundo::_ready);//registro a ready
 }
 
 
