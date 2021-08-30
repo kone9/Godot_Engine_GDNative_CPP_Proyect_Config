@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scripts/Gdscript/mainScene3D.gd" type="Script" id=1]
 [ext_resource path="res://import_scenes/cubo.glb" type="PackedScene" id=2]
-[ext_resource path="res://scripts/GDnative/Cubo.gdns" type="Script" id=3]
+[ext_resource path="res://scripts/GDnative/cubo.gdns" type="Script" id=3]
 
 [sub_resource type="ProceduralSky" id=1]
 

@@ -6,13 +6,8 @@ import os, subprocess, platform, sys
 env = DefaultEnvironment()
 
 
-#------------Tengo que agregar estas variables de ayuda ---
+#------------Tengo que agregar estas variables de ayuda --------
 opts = Variables([],ARGUMENTS)
-opts.Add(EnumVariable(
-                'target','Compilation target', 'release', 
-                allowed_values=('debug','release'),
-                ignorecase = 2
-))
 opts.Add(BoolVariable(
     'use_mingw',
     'Use the MinGW compiler instead of MSVC - only effective on Windows',
@@ -76,7 +71,7 @@ opts.Add(EnumVariable('target', "Compilation target", 'debug', ['d', 'debug', 'r
 opts.Add(EnumVariable('platform', "Compilation platform", '', ['', 'windows', 'x11', 'linux', 'osx']))
 opts.Add(EnumVariable('p', "Compilation target, alias for 'platform'", '', ['', 'windows', 'x11', 'linux', 'osx']))
 opts.Add(BoolVariable('use_llvm', "Use the LLVM / Clang compiler", 'no'))
-opts.Add(PathVariable('target_path', 'The path where the lib is installed.', 'Godot_proyect\GDnative_Plugin_DLL/'))
+opts.Add(PathVariable('target_path', 'The path where the lib is installed.', 'Godot_proyect/GDnative_Plugin_DLL/'))
 opts.Add(PathVariable('target_name', 'The library name.', 'libgdexample', PathVariable.PathAccept))
 
 # Local dependency paths, adapt them to your setup

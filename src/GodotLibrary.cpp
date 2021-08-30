@@ -4,6 +4,7 @@
 
 #include "Player.h"//importante siempre importar la clase para registrarla
 #include "Cubo.h"//importante siempre importar la clase para registrarla
+#include "HolaMundo.h"
 
 using namespace godot;//usamos el espacio de nombres godot sino tenemos varios problemas, no podra explicar mucho esto, pero asi funciona
 
@@ -31,7 +32,8 @@ extern "C" void GDN_EXPORT godot_nativescript_init(void* handle)
 	
 	//Registramos todas las clases que creamos aqui abajo
 	register_class<Player>();//registre la clase player
-	register_class<godot::Cubo>();//registre la clase Cubo
+	register_class<Cubo>();//registre la clase Cubo
+	register_class<HolaMundo>();//registre la clase HolaMundo
 	//register_class<YOUCLASE>();//registra tu clase!
 	
 }
