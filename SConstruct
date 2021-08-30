@@ -148,8 +148,6 @@ elif env['platform'] == "windows": #SI LA PLATAFORMA ES WINDOWS
         # else:
         #     env.Append(CCFLAGS=['-g', '-O3'])
         
-        
-    
     #Ejecuta el COMPIALADOR MSVC de WINDDWS que funciona con Visual studio
     if( not env['use_mingw']): #si "usemingw=false"
         print(" USANDO COMPILADOR MSVC 'Visual studio' ")
