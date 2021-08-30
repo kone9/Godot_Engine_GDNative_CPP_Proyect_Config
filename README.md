@@ -1,4 +1,5 @@
-# Godot-CppProject-Template
+# Godot Engine GDNative C++ Proyect Config
+
 
 
 ![Caratula](https://github.com/kone9/Godot_Engine_GDNative_CPP_Example_Proyect_configuration/blob/main/Godot_proyect/IconProyect/Proyect%20Godot%20GDnative%20icon.png)
