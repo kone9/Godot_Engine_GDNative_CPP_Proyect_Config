@@ -40,7 +40,7 @@
         },
         {
             "type": "shell",
-            "label": "6-Load_submodule_update_init_recursive_'godot-cpp'",
+            "label": "5-Load_submodule_update_init_recursive_'godot-cpp'",
             "command": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
             "args": [
                 "git submodule update --init --recursive"
@@ -49,7 +49,7 @@
         },
         {
             "type": "shell",
-            "label": "7-Generate_and_compile_the_bindings_WINDOWS_x64",
+            "label": "6-Generate_and_compile_the_bindings_WINDOWS_x64",
             "options": {
                 "cwd": "${workspaceFolder}/godot-cpp"
             },
