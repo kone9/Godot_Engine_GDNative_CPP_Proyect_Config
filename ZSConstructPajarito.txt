@@ -1,0 +1,121 @@
+import os, subprocess, platform, sys
+
+
+#------------Tiene que ver con el compilador MINGW-----------------------------------------------
+if sys.version_info < (3,):
+    def decode_utf8(x):
+        return x
+else:
+    import codecs
+    def decode_utf8(x):
+        return codecs.utf_8_decode(x)[0]
+
+# Workaround for MinGW. See:
+# http://www.scons.org/wiki/LongCmdLinesOnWin32
+if (os.name=="nt"):
+    import subprocess
+
+    def mySubProcess(cmdline,env):
+        #print "SPAWNED : " + cmdline
+        startupinfo = subprocess.STARTUPINFO()
+        startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+        proc = subprocess.Popen(cmdline, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE, startupinfo=startupinfo, shell = False, env = env)
+        data, err = proc.communicate()
+        rv = proc.wait()
+        if rv:
+            print("=====")
+            print(err.decode("utf-8"))
+            print("=====")
+        return rv
+
+    def mySpawn(sh, escape, cmd, args, env):
+
+        newargs = ' '.join(args[1:])
+        cmdline = cmd + " " + newargs
+
+        rv=0
+        if len(cmdline) > 32000 and cmd.endswith("ar") :
+            cmdline = cmd + " " + args[1] + " " + args[2] + " "
+            for i in range(3,len(args)) :
+                rv = mySubProcess( cmdline + args[i], env )
+                if rv :
+                    break
+        else:
+            rv = mySubProcess( cmdline, env )
+
+        return rv
+#---------------------------------------------------------------------------------------------
+
+
+#-----------------------------------------------
+libs_path = [
+            'godot-cpp\\bin'
+            ]
+
+libs =  [
+        'libgodot-cpp.windows.Debug.a',
+        'libgodot-cpp.windows.Release.lib'
+        ]
+
+include_path =  [
+                "godot-cpp\godot-headers",
+                "godot-cpp\include",
+                "godot-cpp\include\core",
+                "godot-cpp\include\gen"
+                ]
+
+#----------------------------------------------
+
+#----------------------------------------------
+env = Environment(CPPPATH = include_path)
+
+
+
+#------------Tengo que agregar estas variables---
+opts = Variables([],ARGUMENTS)
+opts.Add(EnumVariable(
+                'target','Compilation target', 'release', 
+                allowed_values=('debug','release'),
+                ignorecase = 2
+))
+opts.Add(BoolVariable(
+    'use_mingw',
+    'Use the MinGW compiler instead of MSVC - only effective on Windows',
+    False
+))
+
+opts.Update(env)
+Help(opts.GenerateHelpText(env))
+#-----------------------------------------------
+
+
+#--------Hago la comprobación que uso MINGW-----------
+if(env['use_mingw']):
+    print("ESTOY USANDO MINGW")
+    env.Append(ENV = os.environ, tools=["mingw"])
+    opts.Update(env)
+    env["SPAWN"] = mySpawn
+#-----------------------------------------------------
+
+
+#-----------tendria que crear los dll------------------
+Mkdir('Godot_proyect\\GDnative_Plugin_DLL\\windows')
+env.SharedLibrary(target='Godot_proyect\\GDnative_Plugin_DLL\\windows\\gdns_lib-D', source=Glob('src\\*.cpp'), INCLUDE = include_path, LIBS = libs[0], LIBPATH = libs_path)
+#-----------------------------------------------------
+
+    
+# else:
+#     # env.Append(CCFLAGS = '/W3')
+#     # env.Append(CCFLAGS = '/MD')
+#     # env.Append(CCFLAGS = '/Zi')
+#     # env.Append(CCFLAGS = '/Ox')
+#     # env.Append(CCFLAGS = '/EHsc')
+#     # env.Append(CCFLAGS = '/DNDEBUG')
+#     # env.Append(CCFLAGS = '/FS')
+
+#     Mkdir('Godot_proyect\\GDnative_Plugin_DLL\\windows')
+#     env.SharedLibrary(target='Godot_proyect\\GDnative_Plugin_DLL\\windows\\gdns_lib-R', source=Glob('src\\*.cpp'), INCLUDE = include_path, LIBS = libs[1], LIBPATH = libs_path)
+
+
+
