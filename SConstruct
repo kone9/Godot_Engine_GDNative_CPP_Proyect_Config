@@ -131,33 +131,28 @@ elif env['platform'] == "windows": #SI LA PLATAFORMA ES WINDOWS
     env['target_path'] += 'win64/'
     cpp_library += '.windows'
     
-    #Ejecuto el COMPILADOR con MINGW
+    #Ejecuta el COMPILADOR con MINGW
+    #CCFLAGS General options that are passed to the C and C++ compilers.
+    #ENV A dictionary of environment variables to use when invoking commands. 
     if( env['use_mingw'] ): #si "use_mingw=yes"
-        print("USANDO COMPILADOR MINGW")
+        print(" USANDO COMPILADOR MINGW")
+        #ejecuto el compilador
+        #agrego este enviroment y estas flags
         env.Append(ENV = os.environ, tools=["mingw"])
-        #env.Append(CCFLAGS=['-W3', '-GR'])
-        # env.Append(CCFLAGS=['-fPIC'])
-        # env.Append(CXXFLAGS=['-std=c++17'])
+        # env.Append(CXXFLAGS=['-std=c++14'])
         opts.Update(env)
         env["SPAWN"] = mySpawn
+        #Si es tarjer o debug agrego l
         # if env['target'] in ('debug', 'd'):
-        #     env.Append(CPPDEFINES=['_DEBUG'])
-        #     #env.Append(CCFLAGS=['-EHsc', '-MDd', '-ZI'])
-        #     env.Append(LINKFLAGS=['-DEBUG'])
-        if env['target'] in ('debug', 'd'):
-            env.Append(CPPDEFINES=['_DEBUG'])
-            env.Append(CCFLAGS=['-g3', '-Og'])
-            env.Append(LINKFLAGS=['-DEBUG'])
-            # env.Append(CCFLAGS=['-g3', '-Og'])
-        else:
-            env.Append(CCFLAGS=['-g', '-O3'])
+        #     env.Append(CCFLAGS=['-g3', '-Og'])
+        # else:
+        #     env.Append(CCFLAGS=['-g', '-O3'])
         
-        opts.Update(env)
-        env["SPAWN"] = mySpawn
+        
     
-    #Ejecuto el COMPIALADOR de WINDDWS
+    #Ejecuta el COMPIALADOR MSVC de WINDDWS que funciona con Visual studio
     if( not env['use_mingw']): #si "usemingw=false"
-        print("USANDO COMPILADOR DE WINDOWS")
+        print(" USANDO COMPILADOR MSVC 'Visual studio' ")
         # This makes sure to keep the session environment variables on windows,
         # that way you can run scons in a vs 2017 prompt and it will find all the required tools
         env.Append(ENV=os.environ)
@@ -172,6 +167,7 @@ elif env['platform'] == "windows": #SI LA PLATAFORMA ES WINDOWS
         else:
             env.Append(CPPDEFINES=['NDEBUG'])
             env.Append(CCFLAGS=['-O2', '-EHsc', '-MD'])
+
 
 
 

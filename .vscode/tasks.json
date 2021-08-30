@@ -56,7 +56,6 @@
             "command": "scons",
             "args": [
                 "platform=windows",
-                "bits=64",
                 "generate_bindings=yes",
                 "use_mingw=yes"
             ],
