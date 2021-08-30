@@ -136,8 +136,10 @@ elif env['platform'] == "windows": #SI LA PLATAFORMA ES WINDOWS
         print("USANDO COMPILADOR MINGW")
         env.Append(ENV = os.environ, tools=["mingw"])
         #env.Append(CCFLAGS=['-W3', '-GR'])
-        env.Append(CCFLAGS=['-fPIC'])
-        env.Append(CXXFLAGS=['-std=c++17'])
+        # env.Append(CCFLAGS=['-fPIC'])
+        # env.Append(CXXFLAGS=['-std=c++17'])
+        opts.Update(env)
+        env["SPAWN"] = mySpawn
         # if env['target'] in ('debug', 'd'):
         #     env.Append(CPPDEFINES=['_DEBUG'])
         #     #env.Append(CCFLAGS=['-EHsc', '-MDd', '-ZI'])
