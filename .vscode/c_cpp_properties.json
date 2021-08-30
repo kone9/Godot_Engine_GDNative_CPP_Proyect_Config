@@ -3,10 +3,11 @@
         {
             "name": "Win32",
             "includePath": [
-                "godot-cpp\\godot-headers",
-                "godot-cpp\\include",
-                "godot-cpp\\include\\core",
-                "godot-cpp\\include\\gen"
+                // "godot-cpp\\godot-headers",
+                // "godot-cpp\\include",
+                // "godot-cpp\\include\\core",
+                // "godot-cpp\\include\\gen"
+                "${workspaceFolder}/**"
             ],
             "defines": [
                 "_DEBUG",
@@ -17,6 +18,8 @@
             "compilerPath": "C:\\\\Program Files\\\\mingw-w64\\\\x86_64-8.1.0-posix-seh-rt_v6-rev0\\\\mingw64\\\\bin\\\\g++.exe",
             "cppStandard": "c++17",
             "cStandard": "c11",
+            // "cppStandard": "gnu++14",
+            // "cStandard": "gnu17",
             "compilerArgs": []
         }
     ],

@@ -1,8 +1,10 @@
 [gd_resource type="NativeScript" load_steps=2 format=2]
 
-[ext_resource path="res://GDnative_Plugin_DLL/gdexample.gdnlib" type="GDNativeLibrary" id=1]
+[sub_resource type="GDNativeLibrary" id=1]
+entry/Windows.64 = "res://GDnative_Plugin_DLL/libgdexample.dll"
+dependency/Windows.64 = [  ]
 
 [resource]
 resource_name = "HolaMundo"
 class_name = "HolaMundo"
-library = ExtResource( 1 )
+library = SubResource( 1 )

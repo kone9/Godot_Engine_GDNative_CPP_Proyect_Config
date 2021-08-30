@@ -30,7 +30,7 @@ else:
 # Workaround for MinGW. See:
 # http://www.scons.org/wiki/LongCmdLinesOnWin32
 if (os.name=="nt"):
-    import subprocess
+    #import subprocess
 
     def mySubProcess(cmdline,env):
         #print "SPAWNED : " + cmdline
@@ -135,6 +135,21 @@ elif env['platform'] == "windows": #SI LA PLATAFORMA ES WINDOWS
     if( env['use_mingw'] ): #si "use_mingw=yes"
         print("USANDO COMPILADOR MINGW")
         env.Append(ENV = os.environ, tools=["mingw"])
+        #env.Append(CCFLAGS=['-W3', '-GR'])
+        env.Append(CCFLAGS=['-fPIC'])
+        env.Append(CXXFLAGS=['-std=c++17'])
+        # if env['target'] in ('debug', 'd'):
+        #     env.Append(CPPDEFINES=['_DEBUG'])
+        #     #env.Append(CCFLAGS=['-EHsc', '-MDd', '-ZI'])
+        #     env.Append(LINKFLAGS=['-DEBUG'])
+        if env['target'] in ('debug', 'd'):
+            env.Append(CPPDEFINES=['_DEBUG'])
+            env.Append(CCFLAGS=['-g3', '-Og'])
+            env.Append(LINKFLAGS=['-DEBUG'])
+            # env.Append(CCFLAGS=['-g3', '-Og'])
+        else:
+            env.Append(CCFLAGS=['-g', '-O3'])
+        
         opts.Update(env)
         env["SPAWN"] = mySpawn
     
