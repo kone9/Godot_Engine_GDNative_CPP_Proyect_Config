@@ -4,11 +4,11 @@
 ![Caratula](https://github.com/kone9/Godot_Engine_GDNative_CPP_Example_Proyect_configuration/blob/main/Godot_proyect/IconProyect/Proyect%20Godot%20GDnative%20icon.png)
 
 
-![CaratulaCuboMoviendoseCubo3D](ImagenesPortada\Godot_Engine_GDnative_Cubo3D_portada.gif)
+![CaratulaCuboMoviendoseCubo3D](ImagenesPortadaRepositorio\Godot_Engine_GDnative_Cubo3D_portada.gif)
 
-![CaratulaCuboMoviendokinematicBodyseGdnatigve](ImagenesPortada\Godot_Engine_GDnative_MoviendoSprite_portada.gif)
+![CaratulaCuboMoviendokinematicBodyseGdnatigve](ImagenesPortadaRepositorio\Godot_Engine_GDnative_MoviendoSprite_portada.gif)
 
-![CaratulaCuboMoviendokinematicBodyseGdnatigve](ImagenesPortada\VistaGodoEditortPortada.jpg)
+![CaratulaCuboMoviendokinematicBodyseGdnatigve](ImagenesPortadaRepositorio\VistaGodoEditortPortada.jpg)
 
 
 
