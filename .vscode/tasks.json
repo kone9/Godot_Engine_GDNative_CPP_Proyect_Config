@@ -22,7 +22,7 @@
         },
         {
             "type": "shell",
-            "label": "3-install SCONS to compile libraries ",
+            "label": "3-install SCONS to compile libraries. (if not you have it)",
             "command": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
             "args": [
                 "pip install scons"
@@ -40,7 +40,16 @@
         },
         {
             "type": "shell",
-            "label": "5-Load_submodule_update_init_recursive_'godot-cpp'",
+            "label": "5-Add_'godot-cpp'_as_submodule_to_project_from_official_github_repository. (if not you have it)",
+            "command": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+            "args": [
+                "git submodule add https://github.com/godotengine/godot-cpp"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "type": "shell",
+            "label": "6-Load_submodule_update_init_recursive_'godot-cpp'",
             "command": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
             "args": [
                 "git submodule update --init --recursive"
@@ -49,7 +58,7 @@
         },
         {
             "type": "shell",
-            "label": "6-Generate_and_compile_the_bindings_WINDOWS_x64",
+            "label": "7-Generate_and_compile_the_bindings_WINDOWS_x64",
             "options": {
                 "cwd": "${workspaceFolder}/godot-cpp"
             },
@@ -58,7 +67,8 @@
                 "platform=windows",
                 "generate_bindings=yes",
                 "bits=64"
-                // "use_mingw=yes"
+                // "use_mingw=yes",
+                //"-j4"
             ],
             "problemMatcher": []
         },
