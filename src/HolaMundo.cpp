@@ -12,6 +12,11 @@ HolaMundo::~HolaMundo()
     
 }
 
+void HolaMundo::_init() 
+{
+    
+}
+
 
 void HolaMundo::_ready()
 {
