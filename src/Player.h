@@ -25,7 +25,6 @@ namespace godot {
 		Player();
 		//metodo destructor, ni idea como funciona en godot, pero lo declaramos por las dudas aunque no lo usemos
 		~Player();
-		
 		//Para hacer la magia de usar Godot Engine con C++ y Gdnative hay que registrar metodos y propiedades con este metodo.. //IMPORTANTE tenemos que registrar los metodos sino godot no los detecta, a veces al registrar las propiedades para que se vean en el editor no se cargan, si pasa eso, reinicia el editor
 		static void _register_methods();
 		
@@ -56,8 +55,6 @@ namespace godot {
 		void _physics_process(real_t delta);
 		//funcion input de godot
 		void _input(godot::Ref<godot::InputEvent> event);
-
-
 
 	// Gameplay variables
 	public:

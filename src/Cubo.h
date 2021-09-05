@@ -20,10 +20,8 @@ namespace godot {
             Cubo();
             //metodo destructor, ni idea como funciona en godot, pero lo declaramos por las dudas aunque no lo usemos
             ~Cubo();
-        
            //Para hacer la magia de usar Godot Engine con C++ y Gdnative hay que registrar metodos y propiedades con este metodo... //IMPORTANTE tenemos que registrar los metodos sino godot no los detecta, a veces al registrar las propiedades para que se vean en el editor no se cargan, si pasa eso, reinicia el editor
             static void _register_methods();
-
 
             //Estos metodos heredan de Node, por lo tanto si quieres saber de donde
             //salen tienes que buscar la clase Node y ver como estan declarados y definidos
