@@ -61,6 +61,6 @@ void Player::_register_methods()//importante tenemos que registrar los metodos s
 	register_method("_process", &Player::_process);//fijate que declaro el metodo sin parametros ni nada, asi godot sabe que es el _process
 	register_method("_physics_process", &Player::_physics_process);//fijate que declaro el metodo sin parametros ni nada, asi godot sabe que es el _physics_process
 	register_method("_input",&Player::_input);//fijate que declaro el metodo sin parametros ni nada, asi godot sabe que es el _process _input
-	register_property("velocidadMovimiento",&Player::velocidadMovimiento,(float)10);//para hacer export var, el primer parametro es el nombre que se ve en el editor, el segundo la variable que uso como referencia y el tercero el valor inicial
+	register_property<Player,float>("velocidadMovimiento",&Player::velocidadMovimiento,10);//para hacer export var, el primer parametro es el nombre que se ve en el editor, el segundo la variable que uso como referencia y el tercero el valor inicial
 }
 

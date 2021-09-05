@@ -39,11 +39,11 @@ namespace godot {
             //como esta hecho en la clase Cpp
             //Por ahora usan la API antigua de Godot Engine, tenelo en cuenta
 
-           //metodo init no es el ready.PRECAUCION: si llamas a los nodos desde aca vas a tener punteros colgados y se va a cerrar la aplicacion. Se puede usar para definir cosas, pero en las practicas que yo hice no pude buscar nodos desde aca. "Es llamada una vez que Godot ha creado nuestro objeto adecuadamente"
+           //metodo init no es el ready.PRECAUCION: si llamas a los nodos desde aca vas a tener punteros colgados y se va a cerrar la aplicacion. Se puede usar para definir cosas, pero en las practicas que yo hice no pude buscar nodos desde aca. "Es llamada una vez que Godot ha creado nuestro objeto adecuadamente"..Este método no se registra y es obligatorio que este en todas las clases 
             void _init();
-            //metodo ready de godot, desde aca podes llamar a los nodos cuando se carganla escena, se ejecuta una sola vez
+            //metodo ready de godot, desde aca podes llamar a los nodos cuando se carganla escena, se ejecuta una sola vez. Este metodo tiene que estar registrado 
             void _ready();
-            //funcion process de godot engine
+            //funcion process de godot engine. Este metodo tiene que estar registrado
             void _process(real_t delta);
 
         // Gameplay variables
