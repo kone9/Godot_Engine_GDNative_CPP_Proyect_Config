@@ -74,7 +74,7 @@
         },
         {
             "type": "shell",
-            "label": "GODOT_BUILD_GDnative_C++_DLL_DEBUG_WINDOWS",
+            "label": "GODOT_BUILD_GDnative_C++_DLL_DEBUG_WINDOWS, (Shortcut 'ctrl + shift + b')",
             "command": "scons",
             "args": [
                 "platform=windows",
